@@ -64,10 +64,10 @@ const LEVEL_0: Section = {
     {
       id: 'deploy-n8n',
       title: '使用 Zeabur 部署你的 n8n 伺服器',
-      description: '如果你還沒有自己的 n8n 伺服器，請跟著教學在 Zeabur 上部署 n8n 伺服器。Zeabur 提供免費額度，部署只需幾分鐘。未來熟練了再付費或部署到別處就行。使用我的邀請碼：darkschen0603 能獲得20%購買伺服器、訂閱、AI API 的折扣。',
+      description: '跟著教學在 Zeabur 上部署你的 n8n 伺服器（部署只需幾分鐘）。<br>教學內為你解析<b>雲端與本地部署的差異</b>，並帶你了解<b>如何租用你的專屬伺服器</b>（熟練後再租更貴的雲服或搬到本地都行）。<br></br>⚠️ <b>注意：</b>2026/3/15 後 Zeabur 將不提供免費額度，屆時可租用專屬伺服器（每月只要 $2 USD 起）。<br><br>🎁 <b>專屬優惠：</b>結帳套用折扣碼 <code style="margin: 0 4px; padding: 2px 6px; background: rgba(0,0,0,0.1); border-radius: 4px; font-weight: bold;">darkschen0603</code>，各項目首次付費可享 <b>20% 折扣</b>！（適用於伺服器、訂閱及儲值 AI API，建議直接租用合適機型以最大化折扣優惠）',
       links: [
-        { label: '📺 部署教學影片', url: 'https://youtu.be/04-s3FDox88', type: 'video' },
-        { label: '🎁 Zeabur 邀請碼 (首次付費 +$5 USD)', url: 'https://zeabur.com/referral?referralCode=darkschen0603', type: 'community' },
+        { label: '📺 部署教學影片', url: 'https://youtu.be/0miP0RGx4uQ', type: 'video' },
+        { label: '🎁 Zeabur 邀請連結 (首次付費 +$5 USD)', url: 'https://zeabur.com/referral?referralCode=darkschen0603', type: 'community' },
       ],
     },
     {
