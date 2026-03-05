@@ -42,6 +42,21 @@ interface Level2Resource {
   url: string;
 }
 
+// 傑出成員資料型別
+interface MemberData {
+  row_number: number;
+  '首次發話日期': string;
+  '名字': string;
+  '身份': string;
+  '回答': number;
+  '分享自身經驗': number;
+  '發問': number;
+  '閒聊': number;
+  '自我介紹': string;
+  '聯絡方式': string;
+  '綜合回答'?: number;
+}
+
 // ============================================
 // Data: Level 0
 // ============================================
@@ -884,6 +899,311 @@ function setupMobileSidebar(): void {
 }
 
 // ============================================
+// Outstanding Members (傑出成員)
+// ============================================
+
+const MEMBERS_WEBHOOK = 'https://aiagent.lifecheatslab.com/webhook/f62d64b4-0c5f-4363-9b47-5c25c6bd1100';
+
+function parseMembersResponse(json: unknown): MemberData[] {
+  // webhook 回傳可能是 {data: [...]} 或 [{data: [...]}]
+  // 統一轉為陣列處理
+  const members: MemberData[] = [];
+  try {
+    let outerArr: { data: { data: MemberData[] }[] }[];
+    if (Array.isArray(json)) {
+      outerArr = json;
+    } else if (json && typeof json === 'object' && 'data' in json) {
+      outerArr = [json as { data: { data: MemberData[] }[] }];
+    } else {
+      return members;
+    }
+    for (const outer of outerArr) {
+      if (!outer.data) continue;
+      for (const inner of outer.data) {
+        if (!inner.data) continue;
+        for (const member of inner.data) {
+          // 如果 webhook 尚未提供綜合回答欄位，則自動計算（回答 + 分享自身經驗）
+          if (member['綜合回答'] === undefined) {
+            member['綜合回答'] = (member['回答'] || 0) + (member['分享自身經驗'] || 0);
+          }
+          members.push(member);
+        }
+      }
+    }
+  } catch { /* 解析失敗，回傳空 */ }
+  // 依「綜合回答」降序排列
+  members.sort((a, b) => (b['綜合回答'] || 0) - (a['綜合回答'] || 0));
+  return members;
+}
+
+function getRoleTags(identity: string): { label: string; cls: string }[] {
+  if (!identity || !identity.trim()) {
+    return [{ label: '傑出成員', cls: 'outstanding' }];
+  }
+  const tags: { label: string; cls: string }[] = [];
+  const roles = identity.split(',').map(r => r.trim()).filter(Boolean);
+  for (const role of roles) {
+    if (role === '創辦人') tags.push({ label: '創辦人', cls: 'founder' });
+    else if (role === '顧問') tags.push({ label: '顧問', cls: 'consultant' });
+    else if (role === '助教') tags.push({ label: '助教', cls: 'ta' });
+    else tags.push({ label: role, cls: 'outstanding' });
+  }
+  return tags;
+}
+
+function getRankBadge(memberRank: number, identity: string): string {
+  // 有身份者 → 特殊徽章，不佔排名
+  if (identity && identity.trim()) {
+    if (identity.includes('創辦人')) return '<span class="member-rank-badge">👑</span>';
+    if (identity.includes('顧問')) return '<span class="member-rank-badge">⭐</span>';
+    if (identity.includes('助教')) return '<span class="member-rank-badge">🎓</span>';
+    return '<span class="member-rank-badge">💎</span>';
+  }
+  // 傑出成員排名
+  if (memberRank === 1) return '<span class="member-rank-badge">🥇</span>';
+  if (memberRank === 2) return '<span class="member-rank-badge">🥈</span>';
+  if (memberRank === 3) return '<span class="member-rank-badge">🥉</span>';
+  if (memberRank <= 10) return `<span class="member-rank-num">${memberRank}</span>`;
+  return '<span class="member-rank-dot">✦</span>';
+}
+
+function renderMemberCard(member: MemberData, memberRank: number, index: number): string {
+  const hasIdentity = member['身份'] && member['身份'].trim();
+  const isFounder = hasIdentity && member['身份'].includes('創辦人');
+  // 有身份者一律顯示回答次數（創辦人除外），傑出成員前10名才顯示
+  const showAnswers = !isFounder && (memberRank <= 10 || !!hasIdentity);
+  const tags = getRoleTags(member['身份']);
+  const hasIntro = member['自我介紹'] && member['自我介紹'].trim();
+  const hasContact = member['聯絡方式'] && member['聯絡方式'].trim();
+  const hasDetails = hasIntro || hasContact;
+  const detailId = `member-detail-${index}`;
+
+  // 名字為空值時顯示「匿名成員」
+  const rawName = member['名字'] && member['名字'].trim();
+  const displayName = rawName ? member['名字'] : '匿名成員';
+
+  let answersHtml = '';
+  if (showAnswers) {
+    answersHtml = `<div class="member-answers">綜合回答 <strong>${member['綜合回答']}</strong> 次</div>`;
+  }
+
+  const tagsHtml = tags.map(t =>
+    `<span class="member-tag ${t.cls}">${t.label}</span>`
+  ).join('');
+
+  let detailsHtml = '';
+  if (hasDetails) {
+    let innerDetails = '';
+    if (hasIntro) {
+      innerDetails += `
+        <div class="member-detail-label">📝 自我介紹</div>
+        <div class="member-detail-content">${escapeHtml(member['自我介紹'])}</div>
+      `;
+    }
+    if (hasContact) {
+      innerDetails += `
+        <div class="member-detail-label">📬 聯絡方式</div>
+        <div class="member-detail-content">${escapeHtml(member['聯絡方式'])}</div>
+      `;
+    }
+
+    // 準備複製內容 (純文字)
+    let copyText = `名字：${displayName}\n`;
+    if (hasIntro) copyText += `\n📝 自我介紹\n${member['自我介紹']}\n`;
+    if (hasContact) copyText += `\n📬 聯絡方式\n${member['聯絡方式']}\n`;
+
+    // 將 copyText 轉為合法屬性字串
+    const safeCopyText = escapeHtml(copyText);
+
+    detailsHtml = `
+      <div class="member-action-bar">
+        <button class="member-expand-btn" data-detail="${detailId}">▸ 更多資訊</button>
+        <button class="member-copy-btn" data-copy="${safeCopyText}">📋 複製資訊</button>
+      </div>
+      <div class="member-details member-details-hidden" id="${detailId}">
+        ${innerDetails}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="member-card" data-rank="${memberRank || ''}">
+      <div class="member-card-top">
+        ${getRankBadge(memberRank, member['身份'])}
+        <div class="member-info">
+          <div class="member-name">${escapeHtml(displayName)}</div>
+          ${answersHtml}
+        </div>
+      </div>
+      <div class="member-tags">${tagsHtml}</div>
+      ${detailsHtml}
+    </div>
+  `;
+}
+
+function escapeHtml(str: string): string {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function renderMembersPanel(members: MemberData[]): void {
+  const panel = document.getElementById('members-panel');
+  if (!panel) return;
+
+  if (members.length === 0) {
+    panel.innerHTML = '';
+    return;
+  }
+
+  // 顯示所有人數 (不再限制 20 人)
+  const display = members;
+
+  let cardsHtml = '';
+  let memberRank = 0; // 排名只給無身份的傑出成員
+  for (let i = 0; i < display.length; i++) {
+    const m = display[i];
+    const hasIdentity = m['身份'] && m['身份'].trim();
+    if (!hasIdentity) memberRank++;
+    cardsHtml += renderMemberCard(m, hasIdentity ? 0 : memberRank, i + 1);
+  }
+
+  panel.innerHTML = `
+    <button class="members-close-btn" id="members-close-btn">✕</button>
+    <div class="members-panel-header">
+      <div class="members-panel-title">🏆 社群傑出成員</div>
+      <div class="members-panel-subtitle">在群組中積極回答問題的夥伴</div>
+    </div>
+    <div class="members-list">
+      ${cardsHtml}
+    </div>
+  `;
+
+  // 展開/收合按鈕事件
+  panel.querySelectorAll('.member-expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const detailId = btn.getAttribute('data-detail');
+      if (!detailId) return;
+      const detail = document.getElementById(detailId);
+      if (!detail) return;
+      const isHidden = detail.classList.contains('member-details-hidden');
+      detail.classList.toggle('member-details-hidden');
+      btn.textContent = isHidden ? '▾ 收合' : '▸ 更多資訊';
+    });
+  });
+
+  // 複製按鈕事件
+  panel.querySelectorAll('.member-copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const textToCopy = btn.getAttribute('data-copy');
+      if (!textToCopy) return;
+
+      const originalText = btn.innerHTML;
+      const setSuccess = () => {
+        btn.innerHTML = '✅ 已複製';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      };
+
+      const setError = () => {
+        btn.innerHTML = '❌ 複製失敗';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+        }, 2000);
+      };
+
+      // 優先使用 navigator.clipboard
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          setSuccess();
+          return;
+        } catch (err) {
+          console.error('Failed to copy text using clipboard API: ', err);
+          // Fallback below
+        }
+      }
+
+      // Fallback: 建立隱藏的 textarea 進行複製
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+
+        // 避免滾動至最底端
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        if (successful) {
+          setSuccess();
+        } else {
+          setError();
+        }
+      } catch (err) {
+        console.error('Fallback copy failed', err);
+        setError();
+      }
+    });
+  });
+
+  // 手機版關閉按鈕
+  const closeBtn = document.getElementById('members-close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      panel.classList.remove('open');
+      document.getElementById('members-overlay')?.classList.remove('open');
+    });
+  }
+}
+
+function setupMembersToggle(): void {
+  const toggle = document.getElementById('members-mobile-toggle');
+  const panel = document.getElementById('members-panel');
+  const overlay = document.getElementById('members-overlay');
+  if (!toggle || !panel || !overlay) return;
+
+  toggle.addEventListener('click', () => {
+    panel.classList.toggle('open');
+    overlay.classList.toggle('open');
+  });
+
+  overlay.addEventListener('click', () => {
+    panel.classList.remove('open');
+    overlay.classList.remove('open');
+  });
+}
+
+async function fetchAndRenderMembers(): Promise<void> {
+  try {
+    const res = await fetch(MEMBERS_WEBHOOK, {
+      method: 'GET',
+      headers: { 'Accept': 'application/json' },
+    });
+    if (!res.ok) return;
+    const json = await res.json();
+    const members = parseMembersResponse(json);
+    if (members.length === 0) return;
+    renderMembersPanel(members);
+    setupMembersToggle();
+    const mobileToggle = document.getElementById('members-mobile-toggle');
+    if (mobileToggle) mobileToggle.style.display = '';
+  } catch {
+    // 無法取得資料，靜默不顯示
+  }
+}
+
+// ============================================
 // First-Visit Intro Modal
 // ============================================
 
@@ -962,6 +1282,7 @@ function init(): void {
   updateProgressUI();
   setupMobileSidebar();
   checkFirstVisit();
+  fetchAndRenderMembers();
 }
 
 document.addEventListener('DOMContentLoaded', init);
