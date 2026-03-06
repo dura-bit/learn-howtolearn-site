@@ -903,6 +903,9 @@ function setupMobileSidebar(): void {
 // ============================================
 
 const MEMBERS_WEBHOOK = 'https://aiagent.lifecheatslab.com/webhook/f62d64b4-0c5f-4363-9b47-5c25c6bd1100';
+const MEMBERS_CACHE_KEY = 'n8n_members_cache';
+const MEMBERS_CACHE_TIME_KEY = 'n8n_members_cache_time';
+const CACHE_DURATION_MS = 24 * 60 * 60 * 1000; // 24小時的毫秒數
 
 function parseMembersResponse(json: unknown): MemberData[] {
   // webhook 回傳可能是 {data: [...]} 或 [{data: [...]}]
@@ -1186,20 +1189,53 @@ function setupMembersToggle(): void {
 
 async function fetchAndRenderMembers(): Promise<void> {
   try {
-    const res = await fetch(MEMBERS_WEBHOOK, {
-      method: 'GET',
-      headers: { 'Accept': 'application/json' },
-    });
-    if (!res.ok) return;
-    const json = await res.json();
-    const members = parseMembersResponse(json);
+    const now = Date.now();
+    const cachedTimeStr = localStorage.getItem(MEMBERS_CACHE_TIME_KEY);
+    const cachedDataStr = localStorage.getItem(MEMBERS_CACHE_KEY);
+
+    let members: MemberData[] = [];
+
+    // 檢查是否有快取且是否在 24 小時內
+    if (cachedTimeStr && cachedDataStr) {
+      const cachedTime = parseInt(cachedTimeStr, 10);
+      if (now - cachedTime < CACHE_DURATION_MS) {
+        try {
+          members = JSON.parse(cachedDataStr);
+        } catch (e) {
+          console.error("快取解析失敗:", e);
+        }
+      }
+    }
+
+    // 若無有效快取，則呼叫 Webhook
+    if (members.length === 0) {
+      const res = await fetch(MEMBERS_WEBHOOK, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+      });
+      if (!res.ok) {
+        console.error("Webhook 回傳失敗，狀態碼:", res.status);
+        return;
+      }
+      const json = await res.json();
+      members = parseMembersResponse(json);
+
+      // 若有成功解出資料，則更新快取
+      if (members.length > 0) {
+        localStorage.setItem(MEMBERS_CACHE_KEY, JSON.stringify(members));
+        localStorage.setItem(MEMBERS_CACHE_TIME_KEY, now.toString());
+      } else {
+        console.warn("Webhook 回傳的資料為空，或解析結果長度為 0:", json);
+      }
+    }
+
     if (members.length === 0) return;
     renderMembersPanel(members);
     setupMembersToggle();
     const mobileToggle = document.getElementById('members-mobile-toggle');
     if (mobileToggle) mobileToggle.style.display = '';
-  } catch {
-    // 無法取得資料，靜默不顯示
+  } catch (err) {
+    console.error("fetchAndRenderMembers 執行時發生錯誤:", err);
   }
 }
 

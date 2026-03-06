@@ -1688,6 +1688,43 @@ a:hover {
   margin-top: 3px;
 }
 
+.members-intro-box {
+  padding: 16px 16px 8px;
+  text-align: center;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  margin-bottom: 4px;
+}
+
+.members-intro-box p {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.members-join-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(240, 147, 43, 0.15));
+  color: #f9ca24;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(249, 202, 36, 0.3);
+  transition: all var(--transition-normal);
+}
+
+.members-join-link:hover {
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(240, 147, 43, 0.3));
+  border-color: rgba(249, 202, 36, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(240, 147, 43, 0.15);
+}
+
 .members-list {
   padding: 10px 12px 20px;
   display: flex;
