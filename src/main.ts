@@ -79,7 +79,7 @@ const LEVEL_0: Section = {
     {
       id: 'deploy-n8n',
       title: '使用 Zeabur 部署你的 n8n 伺服器',
-      description: '跟著教學在 Zeabur 上部署你的 n8n 伺服器（部署只需幾分鐘）。<br>教學內為你解析<b>雲端與本地部署的差異</b>，並帶你了解<b>如何租用你的專屬伺服器</b>（熟練後再租更貴的雲服或搬到本地都行）。<br></br>⚠️ <b>注意：</b>2026/3/15 後 Zeabur 將不提供免費額度，屆時可租用專屬伺服器（每月只要 $2 USD 起）。<br><br>🎁 <b>專屬優惠：</b>結帳套用折扣碼 <code style="margin: 0 4px; padding: 2px 6px; background: rgba(0,0,0,0.1); border-radius: 4px; font-weight: bold;">darkschen0603</code>，各項目首次付費可享 <b>20% 折扣</b>！（適用於伺服器、訂閱及儲值 AI API，建議直接租用合適機型以最大化折扣優惠）',
+      description: '跟著教學在 Zeabur 上部署你的 n8n 伺服器（部署只需幾分鐘）。<br>教學內為你解析<b>雲端與本地部署的差異</b>，並帶你了解<b>如何租用你的專屬伺服器</b>（熟練後再租更貴的雲服或搬到本地都行）。<br></br>⚠️ <b>注意：</b>2026/3/15 後 Zeabur 將不提供免費額度，屆時可租用專屬伺服器（每月只要 $2 USD 起）。<br><br>🎁 <b>專屬優惠：</b>結帳套用折扣碼 <code style="margin: 0 4px; padding: 2px 6px; background: rgba(0,0,0,0.1); border-radius: 4px; font-weight: bold;">darkschen0603</code>，各項目首次付費可享 <b>30% 折扣</b>！（適用於伺服器、訂閱及儲值 AI API，建議直接租用合適機型以最大化折扣優惠）',
       links: [
         { label: '📺 部署教學影片', url: 'https://youtu.be/0miP0RGx4uQ', type: 'video' },
         { label: '🎁 Zeabur 邀請連結 (首次付費 +$5 USD)', url: 'https://zeabur.com/referral?referralCode=darkschen0603', type: 'community' },
@@ -562,6 +562,17 @@ function renderApiGroups(groups: ApiGroup[]): string {
 function renderMainContent(): void {
   const app = document.getElementById('app')!;
   let html = '';
+
+  // ========== Top Announcement Banner ==========
+  html += `
+    <div class="top-announcement-banner" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53); color: white; padding: 12px 20px; text-align: center; font-weight: bold; border-radius: 8px; margin-bottom: 24px; box-shadow: 0 4px 15px rgba(255,107,107,0.3);">
+      <a href="https://lifecheatslab.com/n8n陪跑課" target="_blank" rel="noopener" style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <span style="font-size: 1.2rem;">🔥</span>
+        <span>04/01 ~ 12/31 將舉辦「n8n 陪跑課第二期」，點擊前往課程說明頁面觀看詳細說明</span>
+        <span style="font-size: 1.2rem;">🔥</span>
+      </a>
+    </div>
+  `;
 
   // ========== Brand Hero ==========
   html += `
@@ -1077,6 +1088,13 @@ function renderMembersPanel(members: MemberData[]): void {
       <div class="members-panel-title">🏆 社群傑出成員</div>
       <div class="members-panel-subtitle">在群組中積極回答問題的夥伴</div>
     </div>
+    <div class="members-match-banner" style="background: rgba(255,255,255,0.05); padding: 16px; margin: 16px 14px 6px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+      <div style="font-size: 0.95rem; margin-bottom: 8px; color: var(--text-color); font-weight: bold;">有 n8n 或 AI 自動化相關需求？</div>
+      <div style="font-size: 0.85rem; margin-bottom: 12px; color: #a1a1aa;">如果以下的夥伴沒適合你的，能在這留下你的需求。</div>
+      <a href="https://lifecheatslab.com/n8n-expert" target="_blank" rel="noopener" style="display: block; background: #FF6B6B; color: white; padding: 10px 12px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 4px 10px rgba(255,107,107,0.3);">
+        🤝 免費媒合專家協助
+      </a>
+    </div>
     <div class="members-list">
       ${cardsHtml}
     </div>
@@ -1209,23 +1227,43 @@ async function fetchAndRenderMembers(): Promise<void> {
 
     // 若無有效快取，則呼叫 Webhook
     if (members.length === 0) {
-      const res = await fetch(MEMBERS_WEBHOOK, {
-        method: 'GET',
-        headers: { 'Accept': 'application/json' },
-      });
-      if (!res.ok) {
-        console.error("Webhook 回傳失敗，狀態碼:", res.status);
-        return;
+      // 嘗試主要 Webhook
+      try {
+        const res = await fetch(MEMBERS_WEBHOOK, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+        });
+        if (res.ok) {
+          const json = await res.json();
+          members = parseMembersResponse(json);
+        }
+      } catch (err) {
+        console.warn("主要 Webhook 讀取失敗（可能為 CORS 阻擋或無回應）", err);
       }
-      const json = await res.json();
-      members = parseMembersResponse(json);
+
+      // 備援 Webhook
+      if (members.length === 0) {
+        try {
+          const fallbackUrl = 'https://darksnewn8n.zeabur.app/webhook/f62d64b4-0c5f-4363-9b47-5c25c6bd1100';
+          const resFallback = await fetch(fallbackUrl, {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' },
+          });
+          if (resFallback.ok) {
+            const jsonFallback = await resFallback.json();
+            members = parseMembersResponse(jsonFallback);
+          }
+        } catch (err) {
+          console.warn("備援 Webhook 也讀取失敗", err);
+        }
+      }
 
       // 若有成功解出資料，則更新快取
       if (members.length > 0) {
         localStorage.setItem(MEMBERS_CACHE_KEY, JSON.stringify(members));
         localStorage.setItem(MEMBERS_CACHE_TIME_KEY, now.toString());
       } else {
-        console.warn("Webhook 回傳的資料為空，或解析結果長度為 0:", json);
+        console.warn("Webhook 回傳的資料為空，或解析結果長度為 0");
       }
     }
 
