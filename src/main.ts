@@ -340,13 +340,7 @@ const LEVEL_2_RESOURCES: Level2Resource[] = [
     title: 'n8n 自學筆記 — 從入門到進階',
     desc: '我親自整理的 n8n 自學筆記，收錄我實際學習參考的教學影片，並按先後順序排列，讓你也能跟著自學。',
     url: 'https://lifecheatslab.com/n8n-aiagent/',
-  },
-  {
-    icon: '🧧',
-    title: 'Gemini 送 90 天 300 美金的 AI 使用額度',
-    desc: '免費 API 經常遇到報錯或限速太麻煩？或者想試用付費模型？領取這個免費額度開始體驗付費 API 的穩定與強大。',
-    url: 'https://lifecheatslab.com/google-cloud-300-free-credit/',
-  },
+  }
 ];
 
 const SECTIONS: Section[] = [LEVEL_0, LEVEL_1, LEVEL_2];
@@ -568,7 +562,7 @@ function renderMainContent(): void {
     <div class="top-announcement-banner" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53); color: white; padding: 12px 20px; text-align: center; font-weight: bold; border-radius: 8px; margin-bottom: 24px; box-shadow: 0 4px 15px rgba(255,107,107,0.3);">
       <a href="https://lifecheatslab.com/n8n陪跑課" target="_blank" rel="noopener" style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
         <span style="font-size: 1.2rem;">🔥</span>
-        <span>04/01 ~ 12/31 將舉辦「n8n 陪跑課第二期」，點擊前往課程說明頁面觀看詳細說明</span>
+        <span>「n8n 陪跑課第二期」現正進行中，在今年學會 n8n，成為你行業裡的自動化專家！ <br> 點擊前往課程說明頁面觀看詳細說明</span>
         <span style="font-size: 1.2rem;">🔥</span>
       </a>
     </div>
@@ -759,7 +753,7 @@ function renderMainContent(): void {
           <h4>💡 運行模板產生的花費</h4>
           <ul>
             <li><strong>n8n 部署費用</strong>：Zeabur 雲端部署每月最多 5~10 美金，新手期能用免費額度免費運行。</li>
-            <li><strong>AI 費用</strong>：生圖功能需要付費 Gemini，可領取 Google 送的 90 天 300 美金額度免費使用。</li>
+            <li><strong>AI 費用</strong>：生圖功能需要付費 Gemini，可使用 Zeabur AI HUB功能生圖，1K 大小的圖 0.067 美金起，儲多少用多少，不怕刷爆。</li>
             <li><strong>爬蟲費用</strong>：模板使用的爬蟲均有免費額度，但量若極大則仍需自行付費。</li>
             <li><strong>設計原理</strong>：盡可能用免費資源，讓大家能用低成本的方式先入門學習，再根據自己喜好與預算調整。</li>
           </ul>
