@@ -24,6 +24,7 @@ interface TaskItem {
   paidExtra?: string;
   links?: ResourceLink[];
   apiGroups?: ApiGroup[];
+  videoDuration?: string;
 }
 
 interface Section {
@@ -72,6 +73,7 @@ const LEVEL_0: Section = {
       id: 'portaly-purchase',
       title: 'Portaly 購買教學：如何購買商品與找回已購買的商品',
       description: '第一次使用 Portaly 購買超級個體包？這支影片教你如何完成購買流程，以及未來如何找回你已經購買過的商品與下載檔案。',
+      videoDuration: '4:23',
       links: [
         { label: '📺 觀看影片教學', url: 'https://youtu.be/L3x21UezXZY', type: 'video' },
       ],
@@ -80,6 +82,7 @@ const LEVEL_0: Section = {
       id: 'deploy-n8n',
       title: '使用 Zeabur 部署你的 n8n 伺服器',
       description: '跟著教學在 Zeabur 上部署你的 n8n 伺服器（部署只需幾分鐘）。<br>教學內為你解析<b>雲端與本地部署的差異</b>，並帶你了解<b>如何租用你的專屬伺服器</b>（熟練後再租更貴的雲服或搬到本地都行）。<br></br>⚠️ <b>注意：</b>目前 Zeabur 已不提供免費額度，運行伺服器最少需每月 $2~3 USD 起；若為講師級別或高負載需求，約每月 $5~10 USD 即非常夠用。<br><br>🎁 <b>專屬優惠：</b>結帳套用折扣碼 <code style="margin: 0 4px; padding: 2px 6px; background: rgba(0,0,0,0.1); border-radius: 4px; font-weight: bold;">darkschen0603</code>，各項目首次付費可享 <b>30% 折扣</b>！（適用於伺服器、訂閱及儲值 AI API，建議直接租用合適機型以最大化折扣優惠）',
+      videoDuration: '18:08',
       links: [
         { label: '📺 部署教學影片', url: 'https://youtu.be/0miP0RGx4uQ', type: 'video' },
         { label: '🎁 Zeabur 邀請連結 (首次付費 +$5 USD)', url: 'https://zeabur.com/referral?referralCode=darkschen0603', type: 'community' },
@@ -89,6 +92,7 @@ const LEVEL_0: Section = {
       id: 'import-workflow',
       title: 'n8n 模板如何使用？從下載檔案、加入社群到匯入工作流程完整教學',
       description: '下載好的 JSON 檔案就是你的工作流模板。這支影片從下載檔案開始，教你如何加入學習社群、匯入工作流到你的 n8n，以及基本的操作方式。',
+      videoDuration: '5:15',
       links: [
         { label: '📺 模板使用完整教學', url: 'https://youtu.be/3E-gOxn84fA', type: 'video' },
       ],
@@ -97,6 +101,7 @@ const LEVEL_0: Section = {
       id: 'line-error-notify',
       title: 'n8n 通知自己工作流 & 社群金鑰 串接全攻略',
       description: '從匯入最重要的社群金鑰開始，建立你的安全防護網！設定完成後，當你的任何 n8n 工作流出錯時，系統會自動透過 LINE/Telegram 通知你。也會教你如何找到 LINE 的 ID。',
+      videoDuration: '11:44',
       links: [
         { label: '📺 觀看教學影片', url: 'https://youtu.be/Vf5n-efKNS4', type: 'video' },
         { label: '📄 LINE API 圖文教學', url: 'https://lifecheatslab.com/n8n-line-api/', type: 'article' },
@@ -107,14 +112,16 @@ const LEVEL_0: Section = {
       id: 'learn-debug',
       title: '如何自行除錯、讓 AI 幫忙除錯，以及如何截圖發問',
       description: '遇到問題時，如何正確截圖、如何描述問題、如何在社群裡有效發問，讓助教和其他學員能快速幫到你。學會除錯是玩 n8n 最重要的技能之一。',
+      videoDuration: '10:39',
       links: [
         { label: '📺 觀看影片教學', url: 'https://youtu.be/YxZOALvdssc', type: 'video' },
       ],
     },
     {
       id: 'n8n-style',
-      title: '🎨 n8n 介面美化小工具（非必要安裝）',
+      title: '🎨 n8n 介美化小工具（非必要安裝）',
       description: '⚠️ 如果你發現教學影片裡的 n8n 連線顏色跟你的不一樣，不用緊張！那是因為我裝了這個我自己開發的免費 Chrome 外掛。它只是美化用的，完全不影響功能，不裝也沒任何問題。',
+      videoDuration: '0:37',
       links: [
         { label: '✨ Chrome 外掛下載', url: 'https://lifecheatslab.com/style', type: 'tool' },
         { label: '📺 展示影片', url: 'https://youtu.be/Zh10_3DjQj8', type: 'video' },
@@ -140,6 +147,7 @@ const LEVEL_1: Section = {
       subtitle: '⭐ 最簡單！強烈建議 n8n 新手優先嘗試，你會立刻感受到自動化的強大！',
       description: '你的私人 AI 研究員。透過 LINE 或 Telegram 傳送網址、圖片、語音、影片，AI 會自動幫你摘要整理並存入 Notion。模板內附 Notion AI 知識庫模板連結，匯入工作流後即可在 n8n 內找到，詳細請見教學影片。',
       paidExtra: '實戰版特色：多種解析資料源，和最重要的讓 AI 的重點解析更貼合你的目標與需求！',
+      videoDuration: '22:07',
       links: [
         { label: '📺 影片教學', url: 'https://lifecheatslab.com/summary', type: 'video' },
         { label: '📄 文章教學', url: 'https://lifecheatslab.com/n8n-line-ai-notion/', type: 'article' },
@@ -171,6 +179,7 @@ const LEVEL_1: Section = {
       subtitle: '⭐ 也很簡單！適合自己動手改造，跟「一鍵自動發文」串接，做成全自動社群發文',
       description: '每天自動抓取你感興趣的產業新聞，經 AI 彙整為圖文摘要，推送到你的 LINE、Telegram 或 Email。每個人都能用，輕鬆打造個人專屬的資訊流。',
       paidExtra: '實戰版特色：能生成新聞圖片和錄音，讓你也能做 Podcast，用聽的吸收每日新知！',
+      videoDuration: '19:52',
       links: [
         { label: '📺 影片教學', url: 'https://lifecheatslab.com/news', type: 'video' },
         { label: '📄 文章教學', url: 'https://lifecheatslab.com/n8n-news-media/', type: 'article' },
@@ -208,6 +217,7 @@ const LEVEL_1: Section = {
       subtitle: '不難，建議都用看看，感受一下如何自動獲客與開發',
       description: '自動化你的 LinkedIn 潛在客戶開發流程。系統會根據你的需求，協助搜尋目標客戶、整理客戶資料，並透過 Email 寄出開發信(預設放在你的草稿中)。讓 n8n 幫你找到並追蹤高價值目標客戶。',
       paidExtra: '實戰版特色：AI 幫你尋找符合條件的目標客戶、客製化開發信生成、Google Sheets 名單管理',
+      videoDuration: '9:15',
       links: [
         { label: '📺 影片教學', url: 'https://youtu.be/ZnZygv6IhjY', type: 'video' },
       ],
@@ -231,6 +241,7 @@ const LEVEL_1: Section = {
       subtitle: '⚠️ 難度較高，記得看影片操作。若仍然太難可以考慮先做免費模板',
       description: '寫好一篇文章，一鍵同步發布到 Facebook、Instagram、Threads、X (Twitter)、LinkedIn。模板內附 Notion 主控台模板連結，匯入工作流後即可在 n8n 內找到，詳細請見教學影片。',
       paidExtra: '實戰版特色：排程發布、失敗自動重試、Notion 主控台、多平台狀態追蹤',
+      videoDuration: '8:29',
       links: [
         { label: '📺 影片教學', url: 'https://youtu.be/f7072xeSCJw', type: 'video' },
         { label: '📄 文章教學', url: 'https://lifecheatslab.com/post', type: 'article' },
@@ -271,6 +282,7 @@ const LEVEL_1: Section = {
       subtitle: '只需要申請數個 API，不難，但你得先有自己的網站（可以用 Zeabur 架）',
       description: '讓 AI 幫你撰寫與發布 WordPress 文章，直接從 n8n 發布草稿到你的網站。模板內附 Notion 主控台模板連結，匯入工作流後即可在 n8n 內找到，詳細請見教學影片。',
       paidExtra: '實戰版特色：SEO 自動優化、精選圖片生成、Notion 主控台整合',
+      videoDuration: '14:32',
       links: [
         { label: '📺 影片教學', url: 'https://youtu.be/RqlLjIg9ZSw', type: 'video' },
         { label: '📄 文章教學', url: 'https://lifecheatslab.com/n8n-wordpress-automation/', type: 'article' },
@@ -317,6 +329,7 @@ const LEVEL_2: Section = {
       id: 'google-drive-backup',
       title: '3 分鐘設定 Google Drive 自動備份',
       description: '保護你的心血！設定自動備份，讓 n8n 每天把你的工作流自動備份到 Google Drive。只需要 3 分鐘。',
+      videoDuration: '3:31',
       links: [
         { label: '📺 備份教學影片', url: 'https://youtu.be/GlT7NldtPEE', type: 'video' },
       ],
@@ -582,6 +595,23 @@ function renderMainContent(): void {
         這裡都是你的起點。<br>
         免費學習、真實模板、一步步帶你踏入 AI 自動化的世界。
       </p>
+      <div class="brand-stats">
+        <div class="stat-item">
+          <div class="stat-icon">📺</div>
+          <div class="stat-value">129 分鐘</div>
+          <div class="stat-label">影音課程總時長</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">📄</div>
+          <div class="stat-value">19 篇</div>
+          <div class="stat-label">不重複實戰攻略</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value">12 個</div>
+          <div class="stat-label">自動化實戰關卡</div>
+        </div>
+      </div>
     </div>
   `;
 
@@ -800,11 +830,18 @@ function renderMainContent(): void {
         ? `<div class="task-paid-extra"><span class="paid-extra-badge">✨ 超級個體包</span>${task.paidExtra}</div>`
         : '';
 
+      const durationHtml = task.videoDuration
+        ? `<span class="task-duration-badge">⏱️ ${task.videoDuration}</span>`
+        : '';
+
       html += `
         <div class="task-card ${done ? 'completed' : ''}" data-task-id="${task.id}">
           <div class="task-header">
             <div class="task-checkbox ${done ? 'checked' : ''}" data-task-id="${task.id}">${done ? '✓' : ''}</div>
-            <div class="task-title">${task.title}</div>
+            <div class="task-title">
+              ${task.title}
+              ${durationHtml}
+            </div>
           </div>
           ${subtitleHtml}
           <div class="task-desc">${task.description}</div>
