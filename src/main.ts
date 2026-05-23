@@ -79,7 +79,7 @@ const LEVEL_0: Section = {
     {
       id: 'deploy-n8n',
       title: '使用 Zeabur 部署你的 n8n 伺服器',
-      description: '跟著教學在 Zeabur 上部署你的 n8n 伺服器（部署只需幾分鐘）。<br>教學內為你解析<b>雲端與本地部署的差異</b>，並帶你了解<b>如何租用你的專屬伺服器</b>（熟練後再租更貴的雲服或搬到本地都行）。<br></br>⚠️ <b>注意：</b>2026/3/15 後 Zeabur 將不提供免費額度，屆時可租用專屬伺服器（每月只要 $2 USD 起）。<br><br>🎁 <b>專屬優惠：</b>結帳套用折扣碼 <code style="margin: 0 4px; padding: 2px 6px; background: rgba(0,0,0,0.1); border-radius: 4px; font-weight: bold;">darkschen0603</code>，各項目首次付費可享 <b>30% 折扣</b>！（適用於伺服器、訂閱及儲值 AI API，建議直接租用合適機型以最大化折扣優惠）',
+      description: '跟著教學在 Zeabur 上部署你的 n8n 伺服器（部署只需幾分鐘）。<br>教學內為你解析<b>雲端與本地部署的差異</b>，並帶你了解<b>如何租用你的專屬伺服器</b>（熟練後再租更貴的雲服或搬到本地都行）。<br></br>⚠️ <b>注意：</b>目前 Zeabur 已不提供免費額度，運行伺服器最少需每月 $2~3 USD 起；若為講師級別或高負載需求，約每月 $5~10 USD 即非常夠用。<br><br>🎁 <b>專屬優惠：</b>結帳套用折扣碼 <code style="margin: 0 4px; padding: 2px 6px; background: rgba(0,0,0,0.1); border-radius: 4px; font-weight: bold;">darkschen0603</code>，各項目首次付費可享 <b>30% 折扣</b>！（適用於伺服器、訂閱及儲值 AI API，建議直接租用合適機型以最大化折扣優惠）',
       links: [
         { label: '📺 部署教學影片', url: 'https://youtu.be/0miP0RGx4uQ', type: 'video' },
         { label: '🎁 Zeabur 邀請連結 (首次付費 +$5 USD)', url: 'https://zeabur.com/referral?referralCode=darkschen0603', type: 'community' },
@@ -559,11 +559,14 @@ function renderMainContent(): void {
 
   // ========== Top Announcement Banner ==========
   html += `
-    <div class="top-announcement-banner" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53); color: white; padding: 12px 20px; text-align: center; font-weight: bold; border-radius: 8px; margin-bottom: 24px; box-shadow: 0 4px 15px rgba(255,107,107,0.3);">
-      <a href="https://lifecheatslab.com/n8n陪跑課" target="_blank" rel="noopener" style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
-        <span style="font-size: 1.2rem;">🔥</span>
-        <span>「n8n 陪跑課第二期」現正進行中，在今年學會 n8n，成為你行業裡的自動化專家！ <br> 點擊前往課程說明頁面觀看詳細說明</span>
-        <span style="font-size: 1.2rem;">🔥</span>
+    <div class="top-announcement-banner" style="background: linear-gradient(135deg, #f0c040 0%, #a26cff 100%); color: white; padding: 12px 20px; text-align: center; font-weight: bold; border-radius: 8px; margin-bottom: 24px; box-shadow: 0 4px 15px rgba(162, 108, 255, 0.35); text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+      <a href="https://lifecheatslab.com/一週年活動" target="_blank" rel="noopener" style="color: white; text-decoration: none; display: block; line-height: 1.6;">
+        <span style="font-size: 1.1rem; vertical-align: middle;">🎉</span>
+        <span style="vertical-align: middle; margin-left: 4px;">
+          <strong>【Darks 創業一週年活動舉辦中】<br></strong>從無業遊民到年收百萬的 AI 顧問 —— 我自學 1,500 小時打磨的「超級個體包」<strong>限時 8 折！</strong><br>
+          🎁 限時至 2026/6/4 止，原價補票者再獨家獲贈多賺 10 萬的「Email 銷售工作流」！<br>👉 <strong>點此立即前往活動頁面查看詳情</strong>
+        </span>
+        <span style="font-size: 1.1rem; vertical-align: middle; margin-left: 4px;">🚀</span>
       </a>
     </div>
   `;
@@ -730,7 +733,7 @@ function renderMainContent(): void {
             <ul>
               <li>✅ 五大核心實戰模板</li>
               <li>✅ 加入 <strong>n8n 實戰營 LINE 群組</strong>與 <strong>Discord 討論區</strong></li>
-              <li>✅ 內有 <strong>400+</strong> 位 AI 自動化實踐者</li>
+              <li>✅ 內有 <strong>660+</strong> 位 AI 自動化實踐者</li>
               <li>✅ 熱心助教解答問題，助理回答不了的由我解答</li>
               <li>⚡ 入群會籍保留至：<strong>2026/12/31</strong></li>
             </ul>
@@ -752,9 +755,10 @@ function renderMainContent(): void {
         <div class="product-extra-card">
           <h4>💡 運行模板產生的花費</h4>
           <ul>
-            <li><strong>n8n 部署費用</strong>：Zeabur 雲端部署每月最多 5~10 美金，新手期能用免費額度免費運行。</li>
+            <li><strong>n8n 部署費用</strong>：Zeabur 雲端部署伺服器每月最少需 2~3 美金起，講師級別至約 5~10 美金夠用。</li>
             <li><strong>AI 費用</strong>：生圖功能需要付費 Gemini，可使用 Zeabur AI HUB功能生圖，1K 大小的圖 0.067 美金起，儲多少用多少，不怕刷爆。</li>
             <li><strong>爬蟲費用</strong>：模板使用的爬蟲均有免費額度，但量若極大則仍需自行付費。</li>
+            <li><strong>交易與台灣發票特別聲明</strong>：本商品由境外實體 <strong>FireGenesis LLC</strong> 提供，<strong>不會開立台灣發票</strong>。若您有開立「台灣發票」報帳需求，請直接前往 Portaly 官方商城以原價購買，但恕無法享有本活動的任何折扣與贈品。</li>
             <li><strong>設計原理</strong>：盡可能用免費資源，讓大家能用低成本的方式先入門學習，再根據自己喜好與預算調整。</li>
           </ul>
         </div>
@@ -835,8 +839,8 @@ function renderMainContent(): void {
     <div class="footer-cta-area">
 
       <div class="cta-card community">
-        <h3>🙋 遇到問題？加入 400+ 人的專屬社群</h3>
-        <p>自學遇到卡關是很正常的事。購買超級個體包即可加入 <strong>n8n 實戰營 LINE 群組</strong>與 <strong>Discord 討論區</strong>，裡面有 400+ 位 AI 自動化實踐者與熱心助教協助你排除問題。</p>
+        <h3>🙋 遇到問題？加入 660+ 人的專屬社群</h3>
+        <p>自學遇到卡關是很正常的事。購買超級個體包即可加入 <strong>n8n 實戰營 LINE 群組</strong>與 <strong>Discord 討論區</strong>，裡面有 660+ 位 AI 自動化實踐者與熱心助教協助你排除問題。</p>
         <p class="community-highlight">💬 新手問題也歡迎 · 助教回答不了的由我親自回覆</p>
         <div class="cta-actions">
           <a class="cta-btn primary" href="https://lifecheatslab.com/Supern8n" target="_blank" rel="noopener">🛒 購買超級個體包（含社群入場券）</a>
