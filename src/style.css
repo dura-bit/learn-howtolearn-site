@@ -29,6 +29,11 @@
 
   --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.3);
   --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+
+  /* Newbie Booster Card Variables */
+  --booster-bg: linear-gradient(135deg, var(--bg-card) 0%, rgba(18, 18, 26, 0.95) 100%);
+  --booster-text-p: #a2a2bd;
+  --booster-text-muted: #b2b2cf;
 }
 
 /* === Light Theme === */
@@ -56,6 +61,11 @@
 
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
   --shadow-card-hover: 0 6px 20px rgba(0, 0, 0, 0.1);
+
+  /* Newbie Booster Card Variables */
+  --booster-bg: linear-gradient(135deg, var(--bg-card) 0%, rgba(225, 227, 240, 0.95) 100%);
+  --booster-text-p: #2e2e42;
+  --booster-text-muted: #4e4e66;
 }
 
 /* === Shared Variables === */
@@ -2191,4 +2201,233 @@ a:hover {
   background: rgba(108, 92, 231, 0.08);
   border-color: rgba(108, 92, 231, 0.12);
   color: var(--accent);
+}
+
+/* ============================================
+   Newbie Confidence Booster Card (Option 1)
+   ============================================ */
+.newbie-booster-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  /* Glassmorphism accent background */
+  background: var(--booster-bg);
+  backdrop-filter: blur(10px);
+}
+
+.newbie-booster-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(162, 108, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.newbie-booster-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-active);
+  box-shadow: var(--shadow-card-hover), 0 10px 40px rgba(108, 92, 231, 0.15);
+}
+
+.booster-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.booster-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #f0c040 0%, #ff8c00 100%);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(240, 192, 64, 0.3);
+}
+
+.booster-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.booster-subtitle {
+  font-size: 0.88rem;
+  color: var(--booster-text-muted);
+  line-height: 1.6;
+}
+
+.booster-content-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.booster-video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-color);
+  transition: transform var(--transition-normal);
+}
+
+.booster-video-wrapper:hover {
+  transform: scale(1.01);
+  border-color: var(--border-active);
+}
+
+.booster-video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.booster-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.highlight-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-top: 2px;
+  background: var(--bg-primary);
+  padding: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-card);
+}
+
+.highlight-text h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.highlight-text p {
+  font-size: 0.78rem;
+  color: var(--booster-text-p);
+  line-height: 1.5;
+}
+
+/* Responsive design for Newbie Confidence Booster */
+@media (max-width: 768px) {
+  .newbie-booster-card {
+    padding: 24px 20px;
+  }
+  
+  .booster-content-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .booster-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* ============================================
+   Custom click-to-play video cover styles
+   ============================================ */
+.video-custom-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.video-custom-cover:hover .video-cover-img {
+  transform: scale(1.05);
+}
+
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.video-custom-cover:hover .video-play-overlay {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.custom-play-button {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #ff0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+  transition: all var(--transition-normal);
+  padding-left: 4px; /* visually align play icon */
+  animation: playPulse 2s infinite;
+}
+
+.video-custom-cover:hover .custom-play-button {
+  transform: scale(1.15);
+  background: #ff3333;
+  box-shadow: 0 6px 30px rgba(255, 0, 0, 0.6);
+}
+
+@keyframes playPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(255, 0, 0, 0);
+  }
 }

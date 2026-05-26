@@ -598,7 +598,7 @@ function renderMainContent(): void {
       <div class="brand-stats">
         <div class="stat-item">
           <div class="stat-icon">📺</div>
-          <div class="stat-value">129 分鐘</div>
+          <div class="stat-value">134 分鐘</div>
           <div class="stat-label">影音課程總時長</div>
         </div>
         <div class="stat-item">
@@ -668,6 +668,56 @@ function renderMainContent(): void {
           <div class="step-content">
             <h4>深入研究與改造</h4>
             <p>在 Level 2 探索進階資源，把模板改造成更適合你自己的版本。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // ========== Newbie Confidence Booster Card (Option 1) ==========
+  html += `
+    <div class="newbie-booster-card">
+      <div class="booster-header">
+        <span class="booster-badge">🔥 新手信心充能站</span>
+        <h3 class="booster-title">💡 不懂程式碼？別擔心！用免費 AI 隨意改模板</h3>
+        <p class="booster-subtitle">
+          「模板載了就是你的，你擁有一切修改權。」花 4 分鐘建立核心思維，搭配免費 AI，沒有你改不動的自動化！
+        </p>
+      </div>
+      <div class="booster-content-grid">
+        <div class="booster-video-wrapper" id="booster-video-container">
+          <div class="video-custom-cover" id="booster-video-play-btn">
+            <img class="video-cover-img" src="https://img.youtube.com/vi/7RRtN-wdy-A/maxresdefault.jpg" alt="免費 AI 修改模板教學影片封面" />
+            <div class="video-play-overlay">
+              <div class="custom-play-button">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="booster-highlights">
+          <div class="highlight-item">
+            <span class="highlight-icon">🎁</span>
+            <div class="highlight-text">
+              <h4>下載了就是你的，終身持有</h4>
+              <p>我們提供的 n8n 模板是 100% 開源的 JSON 格式。只要下載下來，就完全屬於你。你擁有無限的修改、擴充與複製權，絕不受任何平台訂閱限制！</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-icon">🤖</span>
+            <div class="highlight-text">
+              <h4>免費 AI 就是你的 24小時程式私教</h4>
+              <p>不懂程式碼？教你如何把模板的 Javascript 節點代碼丟給 ChatGPT / Gemini，讓 AI 幫你翻譯成大白話、直接按你的心意改好代碼，再貼回 n8n 運行！</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-icon">❌</span>
+            <div class="highlight-text">
+              <h4>徹底打破「程式壁壘」</h4>
+              <p>在 AI 時代，不要讓程式碼成為你自動化的絆腳石。跟著影片建立信心，你會發現改模板其實就像拼積木一樣簡單、好玩！</p>
+            </div>
           </div>
         </div>
       </div>
@@ -923,6 +973,25 @@ function renderMainContent(): void {
       if (taskId) toggleTask(taskId);
     });
   });
+
+  // Newbie video click-to-play handler
+  const newbiePlayBtn = document.getElementById('booster-video-play-btn');
+  if (newbiePlayBtn) {
+    newbiePlayBtn.addEventListener('click', () => {
+      const container = document.getElementById('booster-video-container');
+      if (container) {
+        container.innerHTML = `
+          <iframe
+            src="https://www.youtube.com/embed/7RRtN-wdy-A?autoplay=1&rel=0&modestbranding=1"
+            title="免費 AI 修改模板教學影片"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        `;
+      }
+    });
+  }
 }
 
 // ============================================
