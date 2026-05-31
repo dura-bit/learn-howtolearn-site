@@ -81,7 +81,7 @@ const LEVEL_0: Section = {
     {
       id: 'deploy-n8n',
       title: '使用 Zeabur 部署你的 n8n 伺服器',
-      description: '跟著教學在 Zeabur 上部署你的 n8n 伺服器（部署只需幾分鐘）。<br>教學內為你解析<b>雲端與本地部署的差異</b>，並帶你了解<b>如何租用你的專屬伺服器</b>（熟練後再租更貴的雲服或搬到本地都行）。<br></br>⚠️ <b>注意：</b>目前 Zeabur 已不提供免費額度，運行伺服器最少需每月 $2~3 USD 起；若為講師級別或高負載需求，約每月 $5~10 USD 即非常夠用。<br><br>🎁 <b>專屬優惠：</b>結帳套用折扣碼 <code style="margin: 0 4px; padding: 2px 6px; background: rgba(0,0,0,0.1); border-radius: 4px; font-weight: bold;">darkschen0603</code>，各項目首次付費可享 <b>30% 折扣</b>！（適用於伺服器、訂閱及儲值 AI API，建議直接租用合適機型以最大化折扣優惠）',
+      description: '跟著教學在 Zeabur 上部署你的 n8n 伺服器（部署只需幾分鐘）。<br>教學內為你解析<b>雲端與本地部署的差異</b>，並帶你了解<b>如何租用你的專屬伺服器</b>（熟練後再租更貴的雲服或搬到本地都行）。<br></br>⚠️ <b>注意：</b>目前 Zeabur 已不提供免費額度，運行伺服器最少需每月 $3~6 USD 起；若為講師級別或高負載需求，約每月 $6~12 USD 即非常夠用。<br><br>🎁 <b>專屬優惠：</b>結帳套用折扣碼 <code style="margin: 0 4px; padding: 2px 6px; background: rgba(0,0,0,0.1); border-radius: 4px; font-weight: bold;">darkschen0603</code>，各項目首次付費可享 <b>30% 折扣</b>！（適用於伺服器、訂閱及儲值 AI API，建議直接租用合適機型以最大化折扣優惠）',
       videoDuration: '18:08',
       links: [
         { label: '📺 部署教學影片', url: 'https://youtu.be/0miP0RGx4uQ', type: 'video' },
@@ -239,7 +239,7 @@ const LEVEL_1: Section = {
       id: 'multi-platform-post',
       title: '一鍵自動發文',
       subtitle: '⚠️ 難度較高，記得看影片操作。若仍然太難可以考慮先做免費模板',
-      description: '寫好一篇文章，一鍵同步發布到 Facebook、Instagram、Threads、X (Twitter)、LinkedIn。模板內附 Notion 主控台模板連結，匯入工作流後即可在 n8n 內找到，詳細請見教學影片。',
+      description: '寫好一篇文章，一鍵同步發布到 Facebook、Instagram、Threads、X (Twitter)、LinkedIn（⚠️ 注意：LinkedIn 發文需將 n8n 更新至 2.18 或以上版本才能正常發文）。模板內附 Notion 主控台模板連結，匯入工作流後即可在 n8n 內找到，詳細請見教學影片。',
       paidExtra: '實戰版特色：排程發布、失敗自動重試、Notion 主控台、多平台狀態追蹤',
       videoDuration: '8:29',
       links: [
@@ -255,7 +255,7 @@ const LEVEL_1: Section = {
             { label: 'Instagram API', url: 'https://lifecheatslab.com/n8n-ig-api/', type: 'article' },
             { label: 'Threads API', url: 'https://lifecheatslab.com/n8n-threads-api/', type: 'article' },
             { label: 'X  API (2026年官方改成收費api，使用需付費給官方)', url: 'https://lifecheatslab.com/n8n-x-media-post/', type: 'article' },
-            { label: 'LinkedIn API', url: 'https://lifecheatslab.com/n8n-linkedin-api/', type: 'article' },
+            { label: 'LinkedIn API (⚠️ 需更新至 2.18 以上版本方能正常發文)', url: 'https://lifecheatslab.com/n8n-linkedin-api/', type: 'article' },
           ],
         },
         {
@@ -835,7 +835,7 @@ function renderMainContent(): void {
         <div class="product-extra-card">
           <h4>💡 運行模板產生的花費</h4>
           <ul>
-            <li><strong>n8n 部署費用</strong>：Zeabur 雲端部署伺服器每月最少需 2~3 美金起，講師級別至約 5~10 美金夠用。</li>
+            <li><strong>n8n 部署費用</strong>：Zeabur 雲端部署伺服器每月最少需 3~6 美金起，講師級別至約 6~12 美金夠用。</li>
             <li><strong>AI 費用</strong>：生圖功能需要付費 Gemini，可使用 Zeabur AI HUB功能生圖，1K 大小的圖 0.067 美金起，儲多少用多少，不怕刷爆。</li>
             <li><strong>爬蟲費用</strong>：模板使用的爬蟲均有免費額度，但量若極大則仍需自行付費。</li>
             <li><strong>交易與台灣發票特別聲明</strong>：本商品由境外實體 <strong>FireGenesis LLC</strong> 提供，<strong>不會開立台灣發票</strong>。若您有開立「台灣發票」報帳需求，請直接前往 Portaly 官方商城以原價購買，但恕無法享有本活動的任何折扣與贈品。</li>
