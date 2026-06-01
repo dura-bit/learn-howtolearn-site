@@ -65,14 +65,14 @@ interface MemberData {
 const LEVEL_0: Section = {
   id: 'level-0',
   level: 'LEVEL 0',
-  title: '環境準備與部署',
-  description: '開始之前，先把環境架好、工作流匯入完成，並設定好保護機制。請按照順序完成以下步驟。',
+  title: '基礎答題架構建立',
+  description: '從零開始學會申論題的標準寫作邏輯，建立你的答題基礎。請按照順序完成以下步驟。',
   icon: '🛠️',
   tasks: [
     {
       id: 'portaly-purchase',
-      title: 'Portaly 購買教學：如何購買商品與找回已購買的商品',
-      description: '第一次使用 Portaly 購買超級個體包？這支影片教你如何完成購買流程，以及未來如何找回你已經購買過的商品與下載檔案。',
+      title: '申論題模板介紹：什麼是答題架構？為什麽需要模板？',
+      description: '第一次接觸申論題模板？這個單元帶你了解什麼是標準答題架構，以及為什麽建立模板能幫助你在考場上更快、更穩地得分。',
       videoDuration: '4:23',
       links: [
         { label: '📺 觀看影片教學', url: 'https://youtu.be/L3x21UezXZY', type: 'video' },
@@ -587,12 +587,12 @@ function renderMainContent(): void {
   // ========== Brand Hero ==========
   html += `
     <div class="brand-hero" id="site-intro">
-      <div class="brand-hero-badge">🚀 n8n 超級個體包</div>
-      <h1 class="brand-hero-title">n8n 新手實戰學習站</h1>
+      <div class="brand-hero-badge"> 🎯 國考實戰學習站</div>
+      <h1 class="brand-hero-title">國考實戰學習｜專為國考生打造的申論題模板學習平台</h1>
       <p class="brand-hero-subtitle">專為創業者、一人公司與中小企業主打造的<br><strong>n8n 自動化模板學習平台</strong></p>
       <p class="brand-hero-desc">
-        不論你是超級個體包用戶，還是免費模板的學習者，<br>
-        這裡都是你的起點。<br>
+        這是一個 完全免費、開源 的國考學習網站，<br>
+        教你從零開始建立申論題模板與答題架構。<br>
         免費學習、真實模板、一步步帶你踏入 AI 自動化的世界。
       </p>
       <div class="brand-stats">
