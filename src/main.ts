@@ -735,7 +735,7 @@ function renderMainContent(): void {
         <div class="cta-card newsletter">
         <h3>📨 持續接收學習資源</h3>
         <p>後續若有國考備考、申論題、學習策略或心智轉化資源，可以透過官方頁面追蹤更新。</p>
-        <a class="cta-btn primary" href="https://lin.ee/QW4dxD" target="_blank" rel="noopener"> 💬 加入官方 LINE</a>
+        <a class="cta-btn primary" href="https://lin.ee/WzqLYzk" target="_blank" rel="noopener"> 💬 加入官方 LINE</a>
       </div>
 
       <div class="copyright-notice">
