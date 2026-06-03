@@ -16,40 +16,50 @@ interface Level2Resource {icon: string;title: string;desc: string;url: string;}
 
 const LEVEL_0: Section = {id: 'level-0',level: 'LEVEL 0',title: '備考地圖與基礎架構',description: '先建立你的備考全局觀、讀書節奏與申論題基本答題骨架，避免一開始就用錯力。',icon: '🛠️',tasks: [{id: 'exam-map',title: '建立你的國考上榜地圖',subtitle: '先知道自己要怎麼走，才不會一直原地努力',description: '盤點考科、考試期程、每日可用時間與目前程度，建立一份清楚可執行的備考路線圖。',videoDuration: '10:00',links: [],},{id: 'essay-structure-basic',title: '申論題基本架構：破題、爭點、涵攝、結論',subtitle: '申論題不是想到什麼寫什麼，而是用架構穩定輸出',description: '建立申論題的基本答題骨架，理解如何從題目抓出考點，並用清楚層次寫出可被閱卷者理解的答案。',videoDuration: '12:00',links: [],},{id: 'study-rhythm',title: '建立每日讀書節奏與複習循環',description: '把「讀新進度、複習舊內容、練習申論題」放進固定週期，讓備考變成可累積的系統。',videoDuration: '8:00',},{id: 'mistake-review',title: '錯題與弱點回收機制',description: '建立錯題紀錄、常錯考點與答題盲點清單，讓每一次失誤都能轉化成下一次得分。',videoDuration: '9:00',},],};
 
-const LEVEL_1: Section = {id: 'level-1',level: 'LEVEL 1',title: '申論題高分實戰模板',description: '進入正式申論訓練，透過模板化、拆題、考點整理與輸出練習，建立穩定拿分能力。',icon: '🚀',tasks: [{id: 'knowledge-organizer',title: '申論題知識整理器',subtitle: '⭐ 新手優先：先把素材庫建立起來',description: '將法條、概念、案例、時事與老師補充整理成可快速取用的答題素材庫，減少考前找不到資料的焦慮。',paidExtra: '適合用在行政法、憲法、民法、刑法、公共政策等需要大量概念整合的科目。',links: [
-
+const LEVEL_1: Section = {
+  id: 'level-1',
+  level: 'LEVEL 1',
+  title: '申論題高分實戰模板',
+  description: '進入正式申論訓練，透過模板化、拆題、考點整理與輸出練習，建立穩定拿分能力。',
+  icon: '🚀',
+  tasks: [
+    {
+      id: 'knowledge-organizer',
+      title: '申論題知識整理器',
+      subtitle: '⭐ 新手優先：先把素材庫建立起來',
+      description: '將法條、概念、案例、時事與老師補充整理成可快速取用的答題素材庫，減少考前找不到資料的焦慮。',
+      paidExtra: '適合用在行政法、憲法、民法、刑法、公共政策等需要大量概念整合的科目。',
+      links: [],
+    },
+    {
+      id: 'issue-spotting',
+      title: '考點辨識與拆題訓練',
+      subtitle: '看懂題目，才寫得出高分答案',
+      description: '練習從題幹中抓出爭點、關鍵字與命題方向，避免明明讀過卻寫偏題。',
+      paidExtra: '每一題都要先拆題再作答，讓你的答案更貼近閱卷老師想看的重點。',
+    },
+    {
+      id: 'answer-template',
+      title: '高分答題模板輸出訓練',
+      subtitle: '把腦中知識變成卷面分數',
+      description: '使用固定段落與標題層次，把「我知道」轉換成「閱卷者看得懂、願意給分」的答案。',
+      links: [],
+    },
+    {
+      id: 'current-affairs',
+      title: '時事申論素材整理系統',
+      subtitle: '把新聞與政策轉成考場可用素材',
+      description: '針對時事、政策、重大判決與社會議題，整理成背景、爭點、正反論述與可引用金句。',
+    },
+    {
+      id: 'correction-system',
+      title: '申論批改與修正系統',
+      subtitle: '真正進步，來自改答案而不是只看答案',
+      description: '建立自我批改表，檢查是否有破題不清、架構混亂、涵攝不足、結論薄弱等問題。',
+      paidExtra: '每次練題後保留修正版，累積自己的高分答案資料庫。',
+    },
   ],
-},
-{
-  id: 'issue-spotting',
-  title: '考點辨識與拆題訓練',
-  subtitle: '看懂題目，才寫得出高分答案',
-  description: '練習從題幹中抓出爭點、關鍵字與命題方向，避免明明讀過卻寫偏題。',
-  paidExtra: '每一題都要先拆題再作答，讓你的答案更貼近閱卷老師想看的重點。',
-},
-{
-  id: 'answer-template',
-  title: '高分答題模板輸出訓練',
-  subtitle: '把腦中知識變成卷面分數',
-  description: '使用固定段落與標題層次，把「我知道」轉換成「閱卷者看得懂、願意給分」的答案。',
-  links: [
-  ],
-},
-{
-  id: 'current-affairs',
-  title: '時事申論素材整理系統',
-  subtitle: '把新聞與政策轉成考場可用素材',
-  description: '針對時事、政策、重大判決與社會議題，整理成背景、爭點、正反論述與可引用金句。',
-},
-{
-  id: 'correction-system',
-  title: '申論批改與修正系統',
-  subtitle: '真正進步，來自改答案而不是只看答案',
-  description: '建立自我批改表，檢查是否有破題不清、架構混亂、涵攝不足、結論薄弱等問題。',
-  paidExtra: '每次練題後保留修正版，累積自己的高分答案資料庫。',
-},
-
-],};
+};
 
 const LEVEL_2: Section = {id: 'level-2',level: 'LEVEL 2',title: '心智轉化與上榜加速',description: '當方法建立後，接下來要處理的是持續力、穩定度與考前輸出狀態。',icon: '💎',tasks: [{id: 'mindset-reset',title: '考前焦慮與自我懷疑重建',description: '辨識「我是不是考不上」背後的內在小聲音，將焦慮轉化成可執行的讀書行動。',videoDuration: '11:00',},{id: 'exam-sprint',title: '考前 30 天衝刺節奏',description: '建立考前複習、練題、背誦與作息安排，讓最後一個月不是崩潰，而是穩定輸出。',videoDuration: '9:00',},{id: 'weekly-review',title: '每週讀書復盤與進度修正',description: '用每週一次的回顧，確認哪些科目有推進、哪些題型卡住、下週要優先解決什麼。',},],};
 
