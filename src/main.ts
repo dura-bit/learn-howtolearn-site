@@ -55,32 +55,42 @@ const LEVEL_0: Section = {
   icon: '🛠️',
   tasks: [
     {
-      id: 'exam-map',
-      title: '建立你的國考上榜地圖',
-      subtitle: '先知道自己要怎麼走，才不會一直原地努力',
-      description: '盤點考科、考試期程、每日可用時間與目前程度，建立一份清楚可執行的備考路線圖。',
-      videoDuration: '10:00',
-      links: [],
-    },
+  id: 'exam-map',
+  title: '建立你的國考上榜地圖',
+  subtitle: '先知道自己要怎麼走，才不會一直原地努力',
+  description: '盤點考科、考試期程、每日可用時間與目前程度，建立一份清楚可執行的備考路線圖。',
+  videoDuration: '05:00',
+  links: [
     {
-      id: 'essay-structure-basic',
-      title: '申論題基本架構：破題、爭點、涵攝、結論',
-      subtitle: '申論題不是想到什麼寫什麼，而是用架構穩定輸出',
-      description: '建立申論題的基本答題骨架，理解如何從題目抓出考點，並用清楚層次寫出可被閱卷者理解的答案。',
-      videoDuration: '12:00',
-      links: [],
+      label: '📌 直播前必看 ５ 分鐘',
+      url: '#',
+      type: 'video',
     },
+  ],
+},
+    {
+  id: 'essay-structure-basic',
+  title: '申論題基本架構：破題、爭點、涵攝、結論',
+  subtitle: '申論題不是想到什麼寫什麼，而是用架構穩定輸出',
+  description: '建立申論題的基本答題骨架，理解如何從題目抓出考點，並用清楚層次寫出可被閱卷者理解的答案。',
+  videoDuration: '05:00',
+  links: [
+    {
+      label: '📌 直播前必看 ５ 分鐘',
+      url: '#',
+      type: 'video',
+    },
+  ],
+},
     {
       id: 'study-rhythm',
       title: '建立每日讀書節奏與複習循環',
       description: '把「讀新進度、複習舊內容、練習申論題」放進固定週期，讓備考變成可累積的系統。',
-      videoDuration: '8:00',
     },
     {
       id: 'mistake-review',
       title: '錯題與弱點回收機制',
       description: '建立錯題紀錄、常錯考點與答題盲點清單，讓每一次失誤都能轉化成下一次得分。',
-      videoDuration: '9:00',
     },
   ],
 };
@@ -138,16 +148,22 @@ const LEVEL_2: Section = {
   icon: '💎',
   tasks: [
     {
-      id: 'mindset-reset',
-      title: '考前焦慮與自我懷疑重建',
-      description: '辨識「我是不是考不上」背後的內在小聲音，將焦慮轉化成可執行的讀書行動。',
-      videoDuration: '11:00',
+  id: 'mindset-reset',
+  title: '考前焦慮與自我懷疑重建',
+  description: '辨識「我是不是考不上」背後的內在小聲音，將焦慮轉化成可執行的讀書行動。',
+  videoDuration: '05:00',
+  links: [
+    {
+      label: '📌 直播前必看 ５ 分鐘',
+      url: '#',
+      type: 'video',
     },
+  ],
+},
     {
       id: 'exam-sprint',
       title: '考前 30 天衝刺節奏',
       description: '建立考前複習、練題、背誦與作息安排，讓最後一個月不是崩潰，而是穩定輸出。',
-      videoDuration: '9:00',
     },
     {
       id: 'weekly-review',
@@ -474,13 +490,13 @@ function renderMainContent(): void {
   html += `
     <div class="steps-flow">
       <div class="steps-flow-header">
-        <div class="steps-flow-title">📋 如何使用這個學習站？</div>
+        <div class="steps-flow-title">📋 一套從混亂備考到穩定上榜的完整系統</div>
       </div>
       <div class="steps-container">
         <div class="step-item">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h4>先建立備考地圖</h4>
+            <h4>建立上榜戰略地圖</h4>
             <p>確認目標、科目、時間與弱點，建立可執行的讀書方向。</p>
           </div>
         </div>
@@ -488,7 +504,7 @@ function renderMainContent(): void {
         <div class="step-item">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h4>開始申論實戰</h4>
+            <h4>訓練申論高分輸出</h4>
             <p>用模板、拆題與批改機制，建立穩定輸出能力。</p>
           </div>
         </div>
@@ -496,7 +512,7 @@ function renderMainContent(): void {
         <div class="step-item">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h4>心智與節奏調整</h4>
+            <h4>啟動心智與衝刺系統</h4>
             <p>透過復盤、修正與衝刺計畫，穩定走到考場。</p>
           </div>
         </div>
@@ -716,10 +732,14 @@ function renderMainContent(): void {
         </div>
       </div>
 
-      <div class="cta-card newsletter">
+        <div class="cta-card newsletter">
         <h3>📨 持續接收學習資源</h3>
         <p>後續若有國考備考、申論題、學習策略或心智轉化資源，可以透過官方頁面追蹤更新。</p>
         <a class="cta-btn primary" href="https://lin.ee/QW4dxD" target="_blank" rel="noopener"> 💬 加入官方 LINE</a>
+      </div>
+
+      <div class="copyright-notice">
+        © 2026 羽試國考培育學院｜覓蔬小姐。本站內容由本學院原創整理，僅供個人備考學習使用。未經授權，不得轉載、改作、重製，或作為商業課程、廣告素材與教學內容使用。
       </div>
     </div>
   `;
