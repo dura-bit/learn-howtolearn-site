@@ -777,19 +777,7 @@ function setupMobileSidebar(): void {
   });
 }
 
-// ============================================
-// Members Panel：國考版暫時關閉
-// ============================================
 
-function disableMembersPanel(): void {
-  const panel = document.getElementById('members-panel');
-  const toggle = document.getElementById('members-mobile-toggle');
-  const overlay = document.getElementById('members-overlay');
-
-  if (panel) panel.innerHTML = '';
-  if (toggle) toggle.setAttribute('style', 'display:none;');
-  if (overlay) overlay.classList.remove('open');
-}
 
 // ============================================
 // Intro Modal
@@ -851,7 +839,6 @@ function init(): void {
   renderMainContent();
   updateProgressUI();
   setupMobileSidebar();
-  disableMembersPanel();
   checkFirstVisit();
 }
 
