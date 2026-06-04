@@ -62,7 +62,7 @@ const LEVEL_0: Section = {
   videoDuration: '05:00',
   links: [
     {
-      label: '📌 直播前必看 ５ 分鐘',
+      label: '📌 直播前必看 ５ 分鐘｜請點我',
       url: 'https://youtu.be/pN3oKnhkFPQ',
       type: 'video',
     },
@@ -76,7 +76,7 @@ const LEVEL_0: Section = {
   videoDuration: '05:00',
   links: [
     {
-      label: '📌 直播前必看 ５ 分鐘',
+      label: '📌 直播前必看 ５ 分鐘｜請點我',
       url: 'https://youtu.be/LRgBggrZ1M4',
       type: 'video',
     },
@@ -151,7 +151,7 @@ const LEVEL_2: Section = {
   id: 'mindset-reset',
   title: '考前焦慮與自我懷疑重建',
   description: '辨識「我是不是考不上」背後的內在小聲音，將焦慮轉化成可執行的讀書行動。',
-  videoDuration: '05:00',
+  videoDuration: '40:00',
   links: [
     {
       label: '🚀 差 0.2 分落榜後，他沒有放棄｜請點我',
