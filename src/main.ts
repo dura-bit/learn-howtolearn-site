@@ -63,7 +63,7 @@ const LEVEL_0: Section = {
   links: [
     {
       label: '📌 直播前必看 ５ 分鐘',
-      url: '#',
+      url: 'https://youtu.be/pN3oKnhkFPQ',
       type: 'video',
     },
   ],
@@ -77,7 +77,7 @@ const LEVEL_0: Section = {
   links: [
     {
       label: '📌 直播前必看 ５ 分鐘',
-      url: '#',
+      url: 'https://youtu.be/LRgBggrZ1M4',
       type: 'video',
     },
   ],
@@ -154,8 +154,8 @@ const LEVEL_2: Section = {
   videoDuration: '05:00',
   links: [
     {
-      label: '📌 直播前必看 ５ 分鐘',
-      url: '#',
+      label: '🚀 差 0.2 分落榜後，他沒有放棄｜請點我',
+      url: 'https://youtu.be/NcBQNbVptsw',
       type: 'video',
     },
   ],
@@ -178,13 +178,13 @@ const LEVEL_2_RESOURCES: Level2Resource[] = [
     icon: '📖',
     title: '申論自學筆記系統',
     desc: '用一套固定格式整理法條、考點、架構、口訣與延伸題型。',
-    url: 'https://vegelady.com',
+    url: '#',
   },
   {
     icon: '🧭',
     title: '2026 上榜計畫資源盤點',
     desc: '盤點時間、能力、資源與目前弱點，建立自己的上榜計畫。',
-    url: 'https://vegelady.com',
+    url: '#',
   },
 ];
 
