@@ -6,9 +6,9 @@
 /* === Dark Theme (Default) === */
 :root,
 [data-theme="dark"] {
-  --bg-primary: #0f0c0a;
-  --bg-secondary: #171310;
-  --bg-card: #211b17;
+  --bg-primary: #171312;
+  --bg-secondary: #211c19;
+  --bg-card: #2a2421;
   --bg-card-hover: #2b241e;
   --bg-sidebar: #15110e;
   --border-color: #3b312a;
