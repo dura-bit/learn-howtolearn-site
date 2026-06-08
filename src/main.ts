@@ -40,7 +40,7 @@ interface Level2Resource {
   icon: string;
   title: string;
   desc: string;
-  url: string;
+  url?: string;
 }
 
 // ============================================
@@ -178,13 +178,11 @@ const LEVEL_2_RESOURCES: Level2Resource[] = [
     icon: '📖',
     title: '申論自學筆記系統',
     desc: '用一套固定格式整理法條、考點、架構、口訣與延伸題型。',
-    url: '#',
   },
   {
     icon: '🧭',
     title: '2026 上榜計畫資源盤點',
     desc: '盤點時間、能力、資源與目前弱點，建立自己的上榜計畫。',
-    url: '#',
   },
 ];
 
@@ -575,7 +573,7 @@ function renderMainContent(): void {
            href="https://www.instagram.com/vegelady1314?igsh=MWJ3dmczY2t0MWM3Ng%3D%3D&utm_source=qr"
            target="_blank"
            rel="noopener">
-           🟠 Vegelady 
+           📷 Instagram 
         </a>
         <a class="cta-btn secondary"
            href="https://vegelady.com/story/"
@@ -698,15 +696,15 @@ function renderMainContent(): void {
       for (let i = 0; i < LEVEL_2_RESOURCES.length; i += 1) {
         const resource = LEVEL_2_RESOURCES[i];
 
-        html += `
-          <a class="resource-card" id="level2-res-${i}" href="${resource.url}" target="_blank" rel="noopener">
-            <span class="rc-icon">${resource.icon}</span>
-            <div class="rc-info">
-              <h4>${resource.title}</h4>
-              <p>${resource.desc}</p>
-            </div>
-          </a>
-        `;
+     html += `
+  <div class="resource-card" id="level2-res-${i}">
+    <span class="rc-icon">${resource.icon}</span>
+    <div class="rc-info">
+      <h4>${resource.title}</h4>
+      <p>${resource.desc}</p>
+    </div>
+  </div>
+`;
       }
 
       html += `</div>`;
