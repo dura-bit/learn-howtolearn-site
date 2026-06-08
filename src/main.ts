@@ -571,7 +571,12 @@ function renderMainContent(): void {
            rel="noopener">
            🚀 立即預約免費上榜講座
         </a>
-
+       <a class="cta-btn secondary"
+           href="https://www.instagram.com/vegelady1314?igsh=MWJ3dmczY2t0MWM3Ng%3D%3D&utm_source=qr"
+           target="_blank"
+           rel="noopener">
+           🟠 Vegelady 
+        </a>
         <a class="cta-btn secondary"
            href="https://vegelady.com/story/"
            target="_blank"
